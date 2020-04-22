@@ -1,0 +1,4 @@
+baseURL = "https://victornm.github.io/"
+languageCode = "en-us"
+title = "VictorNM's Blog"
+theme = "ananke"
