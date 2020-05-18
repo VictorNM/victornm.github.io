@@ -7,6 +7,7 @@ tags: ["comparision"]
 ---
 
 Chào các bạn, trong bài viết này mình sẽ cùng tìm hiểu xem HTTP là gì, cùng với đó là so sánh sự khác biệt giữa HTTP/1 và HTTP/2 nhé.
+<!--more-->
 
 # HTTP là gì?
 

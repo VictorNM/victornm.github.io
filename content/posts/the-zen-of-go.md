@@ -7,6 +7,7 @@ tags: ["go"]
 ---
 
 Nhân dịp tao blog mình đăng lại 1 bài lược dịch cách đây không lâu của mình, chi tiết các bạn có thể tìm đọc tại bài gốc **"The Zen of Go"** của Dave Cheney: [https://dave.cheney.net/2020/02/23/the-zen-of-go](https://dave.cheney.net/2020/02/23/the-zen-of-go)
+<!--more-->
 
 
 ## A GOOD PACKAGE STARTS WITH A GOOD NAME
