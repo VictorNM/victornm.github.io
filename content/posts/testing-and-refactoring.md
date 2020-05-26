@@ -92,7 +92,7 @@ Vậy cụ thể thì chúng ta sẽ refactor khi nào?
 
 Đầu tiên, khi thêm / chỉnh sửa tính năng phần mềm, nếu ta cảm thấy không dễ dàng để làm điều này, đó là lúc cần phải refactor lại một chút, để việc thêm tính năng dễ dàng hơn.
 
-Thứ 2, đó là khi fix bug. Nếu có bug xuất hiện, đó có thể là dấu hiệu cho thấy đoạn code của phần mềm không thực sự dễ hiểu, làm cho chúng ta không dễ thấy bug. Điều cần làm lúc này là sau khi fix bug, hay refactor lại đoạn code liên quan để tránh các trường hợp tương tự xảy ra.
+Thứ 2, đó là khi fix bug. Nếu có bug xuất hiện, đó có thể là dấu hiệu cho thấy đoạn code của phần mềm không thực sự dễ hiểu, làm cho chúng ta không dễ thấy bug. Điều cần làm lúc này là sau khi fix bug, hãy refactor lại đoạn code liên quan để tránh các trường hợp tương tự xảy ra.
 
 Thứ 3, khi viết thêm code vào phần mềm, sẽ có lúc chúng ta thấy rằng những đoạn code bị lặp đi lặp lại, copy / paste từ chỗ này qua chỗ khác. Đó cũng là một dấu hiệu cho thấy chúng ta cần refactor, ví dụ như tách các đoạn code trùng lặp thành một hàm / module riêng và tái sử dụng lại sau này.
 
