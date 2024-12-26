@@ -1,7 +1,7 @@
 baseURL = "https://victornm.github.io/"
 languageCode = "en-us"
 title = "VictorNM"
-theme = "ezhil"
+theme = "PaperMod"
 
 # Enable syntax highlighting.
 pygmentsstyle = "solarized-dark"
@@ -9,7 +9,8 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 # Number of posts to show in recent posts list (Optional). Defaults to 10.
-paginate = 10
+[pagination]
+    pagerSize = 10
 
 # Number of characters to show in summary.
 summaryLength = 20
@@ -72,3 +73,8 @@ url = "https://github.com/VictorNM"
 # Enable tags.
 [taxonomies]
    tag = "tags"
+
+# Configure for theme PaperMod
+[params.homeInfoParams]
+title = "Hello, I'm VictorNM"
+content = "I’m a software engineer passionate about building scalable and maintainable systems, focusing strongly on Go."
