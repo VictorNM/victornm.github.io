@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Testing and Refactoring | VictorNM</title>
+<meta name="keywords" content="">
+<meta name="description" content="Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.">
+<meta name="author" content="VictorNM">
+<link rel="canonical" href="https://victornm.github.io/posts/testing-and-refactoring/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://victornm.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://victornm.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://victornm.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://victornm.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://victornm.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://victornm.github.io/posts/testing-and-refactoring/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://victornm.github.io/posts/testing-and-refactoring/">
+  <meta property="og:site_name" content="VictorNM">
+  <meta property="og:title" content="Testing and Refactoring">
+  <meta property="og:description" content="Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-21T08:39:31+07:00">
+    <meta property="article:modified_time" content="2020-05-21T08:39:31+07:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Testing and Refactoring">
+<meta name="twitter:description" content="Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://victornm.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Testing and Refactoring",
+      "item": "https://victornm.github.io/posts/testing-and-refactoring/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Testing and Refactoring",
+  "name": "Testing and Refactoring",
+  "description": "Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.\nRefactoring Definition Refactoring là gì? Mình sẽ dẫn lại định nghĩa về “refactoring” trong cuốn “Refactoring - Improving the Design of Existing Code” của Martin Fowler:\nRefactoring (noun): a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behavior.\nRefactoring (verb): to restructure software by applying a series of refactorings without changing its observable behavior.\nVậy để hiểu đơn giản thì “refactoring” là việc chỉnh sửa code để làm cho code dễ hiểu và dễ thay đổi hơn, mà không làm thay đổi behavior của phần code được chỉnh sửa đó. Ví dụ ngày trước mình có gặp một hàm lấy thông tin Account của AWS về verify và lưu vào DB như sau:\npublic function verifyUser() { // init $client // ... $account = new Account() $user = $client-\u003egetUser()['User']; $account-\u003eiam_arn = $user['Arn']; preg_match('/(?\u003c=::)([0-9]+):/', $user['Arn'], $amz_id); $account-\u003eamz_id = $amz_id[1]; // some verification // ... $account-\u003esave(); } Thực tế hàm dài và phức tạp hơn vậy, nhưng mình chỉ trích 1 đoạn ngắn để mình họa. Như các bạn có thể thấy thì hàm sẽ thực hiện gọi client của AWS để lấy thông tin user gồm IAM ARN và Amazon ID, tuy nhiên có 1 đoạn khi lần đầu đọc tới mình thực sự không hiều là dùng làm gì:\npublic function verifyUser() { // ... preg_match('/(?\u003c=::)([0-9]+):/', $iam_user['Arn'], $amz_id); $account-\u003eamz_id = $amz_id[1]; // ... } Sau một hồi nghiên cứu và đọc document của AWS thì mình mới biết được trong IAM ARN của AWS thì có chứa Amazon ID, ví dụ IAM_ARN của account = “arn:aws:iam::123456789012:user/JohnDoe” thì số “123456789012” chính là Amazon ID của account đó, tức là đoạn code này đang dùng regex để tách Amazon ID ra. Chính vì bị confuse như vậy khi đọc code nên sau khi hiểu ra, mình quyết định refactor như sau:\npublic function verifyUser() { // init $client // ... $account = new Account() $user = $client-\u003egetUser()['User']; $account-\u003eiam_arn = $user['Arn']; $account-\u003eamz_id = extractAmazonId($account-\u003eiam_arn); // some verifications // ... $account-\u003esave(); } private function extractAmazonId($iamArn) { preg_match('/(?\u003c=::)([0-9]+):/', $iamArn, $matches); return $matches[1]; } Các bạn thấy đấy, mình chỉ đơn giản là tách 2 dòng code thành 1 hàm riêng, tuy nhiên đã làm code dễ hiểu hơn hắn vì lúc đã remove được low level abstraction code ra khỏi hàm verifyUser().\nRefactoring không chỉ diễn ra ở level function, mà ở các level cao hơn như refactor class hay module, thậm chí architecture. Việc quan trọng là cần đảm bảo refactor từ từ, từng bước nhỏ, và tại bất kỳ bước refactor nào thì cũng không được để phần mềm bị failed vì:\nIf someone says their code was broken for a couple of days while the are refactoring, you can be pretty sure they were not refactoring. - “Refactoring - Improving the Design of Existing Code”\nWhy refactoring? And When? Như đề cập ở trên, refactoring giúp code dễ hiểu, cũng như dễ thích nghi với sự thay đổi của phần mềm hơn. Với việc code dễ hiểu hơn, developer cũng tăng cơ hội tìm ra các bug tồn tại trong phần mềm, giúp tăng chất lượng chung của phần mềm lên. Ngoài ra, thông qua continuous refactoring, giống như tập thể dục thường xuyên vậy, chúng ta có thể đảm bảo luôn giữ cho phần mềm được “khỏe mạnh”, giúp quá trình phát triển phần mềm thuận lợi và đạt tốc độ tốt hơn.\nVậy tại sao chúng ta không viết code dễ hiểu ngay từ đầu mà cần phải refactor? Lý do chính cho việc này đó là tính năng của phần mềm sẽ thay đổi, và thay đổi thường xuyên. Điều này dẫn tới việc rất khó để tạo ra 1 thiết kế tốt ngày từ đầu (và “big design up front” thường được xem là không nên, vì dựa nhiều trên các giả định có thể sẽ không xảy ra, làm phức tạp hóa phần mềm 1 cách không cần thiết). Cho nên, mình nói refactoring là kỹ năng thiết yếu, vì nếu làm tốt, chúng ta có thể đưa ra 1 simple solution dựa trên yêu cầu và thông tin có được lúc đó, và tự tin rằng mình có thể gradually improve the solution when needed.\nVậy cụ thể thì chúng ta sẽ refactor khi nào?\nĐầu tiên, khi thêm / chỉnh sửa tính năng phần mềm, nếu ta cảm thấy không dễ dàng để làm điều này, đó là lúc cần phải refactor lại một chút, để việc thêm tính năng dễ dàng hơn.\nThứ 2, đó là khi fix bug. Nếu có bug xuất hiện, đó có thể là dấu hiệu cho thấy đoạn code của phần mềm không thực sự dễ hiểu, làm cho chúng ta không dễ thấy bug. Điều cần làm lúc này là sau khi fix bug, hãy refactor lại đoạn code liên quan để tránh các trường hợp tương tự xảy ra.\nThứ 3, khi viết thêm code vào phần mềm, sẽ có lúc chúng ta thấy rằng những đoạn code bị lặp đi lặp lại, copy / paste từ chỗ này qua chỗ khác. Đó cũng là một dấu hiệu cho thấy chúng ta cần refactor, ví dụ như tách các đoạn code trùng lặp thành một hàm / module riêng và tái sử dụng lại sau này.\nCuối cùng, continuous refactoring, với một tinh thần của người nghệ nhân phần mềm, sự tận tâm đối với sản phẩm chính tay mình tạo ra, hãy làm cho code tốt lên từng ngày, từng giờ, từng phút một.\nWhen programming, follow the camping rule: Always leave the code base healthier than when you found it. - “Refactoring - Improving the Design of Existing Code”\n",
+  "wordCount" : "1053",
+  "inLanguage": "en",
+  "datePublished": "2020-05-21T08:39:31+07:00",
+  "dateModified": "2020-05-21T08:39:31+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "VictorNM"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://victornm.github.io/posts/testing-and-refactoring/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VictorNM",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://victornm.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://victornm.github.io/" accesskey="h" title="VictorNM (Alt + H)">VictorNM</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://victornm.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://victornm.github.io/posts" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://victornm.github.io/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Testing and Refactoring
+    </h1>
+    <div class="post-meta"><span title='2020-05-21 08:39:31 +0700 +07'>May 21, 2020</span>&nbsp;·&nbsp;VictorNM
+
+</div>
+  </header> 
+  <div class="post-content"><p>Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.</p>
+<h2 id="refactoring">Refactoring<a hidden class="anchor" aria-hidden="true" href="#refactoring">#</a></h2>
+<h3 id="definition">Definition<a hidden class="anchor" aria-hidden="true" href="#definition">#</a></h3>
+<p>Refactoring là gì? Mình sẽ dẫn lại định nghĩa về &ldquo;refactoring&rdquo; trong cuốn &ldquo;Refactoring - Improving the Design of Existing Code&rdquo; của Martin Fowler:</p>
+<blockquote>
+<p>Refactoring (noun): a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behavior.</p>
+</blockquote>
+<blockquote>
+<p>Refactoring (verb): to restructure software by applying a series of refactorings without changing its observable behavior.</p>
+</blockquote>
+<p>Vậy để hiểu đơn giản thì &ldquo;refactoring&rdquo; là việc chỉnh sửa code để làm cho code dễ hiểu và dễ thay đổi hơn, mà không làm thay đổi behavior của phần code được chỉnh sửa đó. Ví dụ ngày trước mình có gặp một hàm lấy thông tin Account của AWS về verify và lưu vào DB như sau:</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#719e07">public</span> <span style="color:#719e07">function</span> <span style="color:#268bd2">verifyUser</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// init $client
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#586e75">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#268bd2">$account</span> <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> Account()
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$user</span> <span style="color:#719e07">=</span> <span style="color:#268bd2">$client</span><span style="color:#719e07">-&gt;</span>getUser()[<span style="color:#2aa198">&#39;User&#39;</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>iam_arn <span style="color:#719e07">=</span> <span style="color:#268bd2">$user</span>[<span style="color:#2aa198">&#39;Arn&#39;</span>];
+</span></span><span style="display:flex;"><span>    preg_match(<span style="color:#2aa198">&#39;/(?&lt;=::)([0-9]+):/&#39;</span>, <span style="color:#268bd2">$user</span>[<span style="color:#2aa198">&#39;Arn&#39;</span>], <span style="color:#268bd2">$amz_id</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>amz_id <span style="color:#719e07">=</span> <span style="color:#268bd2">$amz_id</span>[<span style="color:#2aa198">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// some verification
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#586e75">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>save();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Thực tế hàm dài và phức tạp hơn vậy, nhưng mình chỉ trích 1 đoạn ngắn để mình họa. Như các bạn có thể thấy thì hàm sẽ thực hiện gọi client của AWS để lấy thông tin user gồm IAM ARN và Amazon ID, tuy nhiên có 1 đoạn khi lần đầu đọc tới mình thực sự không hiều là dùng làm gì:</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#719e07">public</span> <span style="color:#719e07">function</span> <span style="color:#268bd2">verifyUser</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>
+</span></span><span style="display:flex;"><span>    preg_match(<span style="color:#2aa198">&#39;/(?&lt;=::)([0-9]+):/&#39;</span>, <span style="color:#268bd2">$iam_user</span>[<span style="color:#2aa198">&#39;Arn&#39;</span>], <span style="color:#268bd2">$amz_id</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>amz_id <span style="color:#719e07">=</span> <span style="color:#268bd2">$amz_id</span>[<span style="color:#2aa198">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>}</span></span></code></pre></div>
+<p>Sau một hồi nghiên cứu và đọc document của AWS thì mình mới biết được trong IAM ARN của AWS thì có chứa Amazon ID, ví dụ IAM_ARN của account = &ldquo;arn:aws:iam::123456789012:user/JohnDoe&rdquo; thì số &ldquo;123456789012&rdquo; chính là Amazon ID của account đó, tức là đoạn code này đang dùng regex để tách Amazon ID ra. Chính vì bị confuse như vậy khi đọc code nên sau khi hiểu ra, mình quyết định refactor như sau:</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#719e07">public</span> <span style="color:#719e07">function</span> <span style="color:#268bd2">verifyUser</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// init $client
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#586e75">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#268bd2">$account</span> <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> Account()
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$user</span> <span style="color:#719e07">=</span> <span style="color:#268bd2">$client</span><span style="color:#719e07">-&gt;</span>getUser()[<span style="color:#2aa198">&#39;User&#39;</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>iam_arn <span style="color:#719e07">=</span> <span style="color:#268bd2">$user</span>[<span style="color:#2aa198">&#39;Arn&#39;</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>amz_id <span style="color:#719e07">=</span> extractAmazonId(<span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>iam_arn);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// some verifications
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#586e75">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    <span style="color:#268bd2">$account</span><span style="color:#719e07">-&gt;</span>save();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">private</span> <span style="color:#719e07">function</span> <span style="color:#268bd2">extractAmazonId</span>(<span style="color:#268bd2">$iamArn</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    preg_match(<span style="color:#2aa198">&#39;/(?&lt;=::)([0-9]+):/&#39;</span>, <span style="color:#268bd2">$iamArn</span>, <span style="color:#268bd2">$matches</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">return</span> <span style="color:#268bd2">$matches</span>[<span style="color:#2aa198">1</span>];
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Các bạn thấy đấy, mình chỉ đơn giản là tách 2 dòng code thành 1 hàm riêng, tuy nhiên đã làm code dễ hiểu hơn hắn vì lúc đã remove được low level abstraction code ra khỏi hàm <code>verifyUser()</code>.</p>
+<p>Refactoring không chỉ diễn ra ở level function, mà ở các level cao hơn như refactor class hay module, thậm chí architecture. Việc quan trọng là cần đảm bảo refactor từ từ, từng bước nhỏ, và tại bất kỳ bước refactor nào thì cũng không được để phần mềm bị failed vì:</p>
+<blockquote>
+<p>If someone says their code was broken for a couple of days while the are refactoring, you can be pretty sure they were not refactoring. - <em>&ldquo;Refactoring - Improving the Design of Existing Code&rdquo;</em></p>
+</blockquote>
+<h3 id="why-refactoring-and-when">Why refactoring? And When?<a hidden class="anchor" aria-hidden="true" href="#why-refactoring-and-when">#</a></h3>
+<p>Như đề cập ở trên, refactoring giúp code dễ hiểu, cũng như dễ thích nghi với sự thay đổi của phần mềm hơn. Với việc code dễ hiểu hơn, developer cũng tăng cơ hội tìm ra các bug tồn tại trong phần mềm, giúp tăng chất lượng chung của phần mềm lên. Ngoài ra, thông qua continuous refactoring, giống như tập thể dục thường xuyên vậy, chúng ta có thể đảm bảo luôn giữ cho phần mềm được &ldquo;khỏe mạnh&rdquo;, giúp quá trình phát triển phần mềm thuận lợi và đạt tốc độ tốt hơn.</p>
+<p>Vậy tại sao chúng ta không viết code dễ hiểu ngay từ đầu mà cần phải refactor? Lý do chính cho việc này đó là tính năng của phần mềm sẽ thay đổi, và thay đổi thường xuyên. Điều này dẫn tới việc rất khó để tạo ra 1 thiết kế tốt ngày từ đầu (và &ldquo;big design up front&rdquo; thường được xem là không nên, vì dựa nhiều trên các giả định có thể sẽ không xảy ra, làm phức tạp hóa phần mềm 1 cách không cần thiết). Cho nên, mình nói refactoring là kỹ năng thiết yếu, vì nếu làm tốt, chúng ta có thể đưa ra 1 simple solution dựa trên yêu cầu và thông tin có được lúc đó, và tự tin rằng mình có thể gradually improve the solution when needed.</p>
+<p>Vậy cụ thể thì chúng ta sẽ refactor khi nào?</p>
+<p>Đầu tiên, khi thêm / chỉnh sửa tính năng phần mềm, nếu ta cảm thấy không dễ dàng để làm điều này, đó là lúc cần phải refactor lại một chút, để việc thêm tính năng dễ dàng hơn.</p>
+<p>Thứ 2, đó là khi fix bug. Nếu có bug xuất hiện, đó có thể là dấu hiệu cho thấy đoạn code của phần mềm không thực sự dễ hiểu, làm cho chúng ta không dễ thấy bug. Điều cần làm lúc này là sau khi fix bug, hãy refactor lại đoạn code liên quan để tránh các trường hợp tương tự xảy ra.</p>
+<p>Thứ 3, khi viết thêm code vào phần mềm, sẽ có lúc chúng ta thấy rằng những đoạn code bị lặp đi lặp lại, copy / paste từ chỗ này qua chỗ khác. Đó cũng là một dấu hiệu cho thấy chúng ta cần refactor, ví dụ như tách các đoạn code trùng lặp thành một hàm / module riêng và tái sử dụng lại sau này.</p>
+<p>Cuối cùng, continuous refactoring, với một tinh thần của người nghệ nhân phần mềm, sự tận tâm đối với sản phẩm chính tay mình tạo ra, hãy làm cho code tốt lên từng ngày, từng giờ, từng phút một.</p>
+<blockquote>
+<p>When programming, follow the camping rule: Always leave the code base healthier than when you found it. - <em>&ldquo;Refactoring - Improving the Design of Existing Code&rdquo;</em></p>
+</blockquote>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://victornm.github.io/">VictorNM</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

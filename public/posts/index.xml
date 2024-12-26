@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on VictorNM</title>
+    <link>https://victornm.github.io/posts/</link>
+    <description>Recent content in Posts on VictorNM</description>
+    <generator>Hugo -- 0.140.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 May 2020 14:51:46 +0700</lastBuildDate>
+    <atom:link href="https://victornm.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CAP Theorem</title>
+      <link>https://victornm.github.io/posts/cap-theorem/</link>
+      <pubDate>Tue, 26 May 2020 14:51:46 +0700</pubDate>
+      <guid>https://victornm.github.io/posts/cap-theorem/</guid>
+      <description>&lt;p&gt;Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: &lt;a href=&#34;https://www.ibm.com/cloud/learn/cap-theorem&#34;&gt;https://www.ibm.com/cloud/learn/cap-theorem&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Testing and Refactoring</title>
+      <link>https://victornm.github.io/posts/testing-and-refactoring/</link>
+      <pubDate>Thu, 21 May 2020 08:39:31 +0700</pubDate>
+      <guid>https://victornm.github.io/posts/testing-and-refactoring/</guid>
+      <description>&lt;p&gt;Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Zen of Go</title>
+      <link>https://victornm.github.io/posts/the-zen-of-go/</link>
+      <pubDate>Sun, 17 May 2020 22:29:23 +0700</pubDate>
+      <guid>https://victornm.github.io/posts/the-zen-of-go/</guid>
+      <description>&lt;p&gt;Nhân dịp tao blog mình đăng lại 1 bài lược dịch cách đây không lâu của mình, chi tiết các bạn có thể tìm đọc tại bài gốc &lt;strong&gt;&amp;ldquo;The Zen of Go&amp;rdquo;&lt;/strong&gt; của Dave Cheney: &lt;a href=&#34;https://dave.cheney.net/2020/02/23/the-zen-of-go&#34;&gt;https://dave.cheney.net/2020/02/23/the-zen-of-go&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
