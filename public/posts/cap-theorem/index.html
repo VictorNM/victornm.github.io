@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>CAP Theorem | VictorNM</title>
 <meta name="keywords" content="">
 <meta name="description" content="Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: https://www.ibm.com/cloud/learn/cap-theorem">
 <meta name="author" content="">
-<link rel="canonical" href="https://victornm.github.io/posts/cap-theorem/">
+<link rel="canonical" href="http://localhost:1313/posts/cap-theorem/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://victornm.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://victornm.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://victornm.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://victornm.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://victornm.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://victornm.github.io/posts/cap-theorem/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/cap-theorem/">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,69 +55,7 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://victornm.github.io/posts/cap-theorem/">
-  <meta property="og:site_name" content="VictorNM">
-  <meta property="og:title" content="CAP Theorem">
-  <meta property="og:description" content="Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: https://www.ibm.com/cloud/learn/cap-theorem">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-05-26T14:51:46+07:00">
-    <meta property="article:modified_time" content="2020-05-26T14:51:46+07:00">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CAP Theorem">
-<meta name="twitter:description" content="Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: https://www.ibm.com/cloud/learn/cap-theorem">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://victornm.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "CAP Theorem",
-      "item": "https://victornm.github.io/posts/cap-theorem/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "CAP Theorem",
-  "name": "CAP Theorem",
-  "description": "Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: https://www.ibm.com/cloud/learn/cap-theorem\n",
-  "keywords": [
-    
-  ],
-  "articleBody": "Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: https://www.ibm.com/cloud/learn/cap-theorem\nWhat is the CAP theorem? Định lý CAP phát biểu rằng: Trong một hệ thống phân tán, chỉ có 2 trong số 3 thuộc tính: consistency, availability, và partition tolerance là có thể tồn tại cùng lúc (’C’, ‘A’ và ‘P’ trong CAP).\nMột hệ thống phân tán là một network lưu trữ dữ liệu trong nhiều hơn 1 node (máy tính vật lý hoặc máy ảo) tại cùng một thời điểm. Bởi vì tất cả ứng dụng cloud đều là hệ thống phân tán, nên hiểu được định lý CAP là điều cần thiết để khi thiết kế một ứng dụng cloud, bạn có thể chọn được loại hệ thống quản lý dữ liệu phù hợp nhất.\nThe ‘CAP’ in the CAP theorem, explained Consitency Consistency có nghĩa là tại cùng một thời điểm, tất cả client sẽ thấy các dữ liệu giống nhau, bất kể client đó đang kết nối tới node nào. Đề đạt được điều này, bất cứ khi nào dữ liệu được lưu xuống ở một node thì nó cần phải forwarded hoặc replicated tới tất cả các node còn lại trong hệ thống ngay lập tức, khi đó việc lưu trữ mới được xem là thành công.\nAvailability Availability nghĩa là khi bất kỳ một client nào gửi request thì đều phải nhận được response, kể cả khi 1 hoặc nhiều node bị sập. Hay nói cách khác, tất cả các node đang hoạt động trong hệ thống phân tán đều phải phản hồi lại bất kỳ request nào, không có ngoại lệ.\nPartition tolerance Partition là hiện tượng xảy ra khi giao tiếp trong hệ thống phân tán bị ngắt, có thể do mất kết nối hoặc kết nối bị chậm giữa 2 node với nhau. Partition tolerance nghĩa là cluster cần phải tiếp tục hoặt động bất kể có bao nhiêu node bị ngắt kết nối với nhau trong hệ thống.\nCAP theorem NoSQL database types NoSQL database rất phù hợp cho các ứng dụng phân tán. Không giống như SQL database scale theo chiều dọc (vertically scale), các NoSQL databases được thiết kết để scale theo chiều ngang (horizontally scale) và hoạt động phân tán, chúng có thể nhanh chóng scale trên một network đang tăng trưởng bao gồm nhiều node liên kết với nhau.\nNgày này, các NoSQL databases được phân loại dựa theo 2 loại thuộc tính mà chúng hỗ trợ:\nCP database: hỗ trợ consistency và partition tolerance thay cho availability. Khi mà partition xuất hiện giữa bất kỳ 2 nodes nào, hệ thống phải tắt node không consitent đi cho tới khi giải quyết được partition.\nAP database: hỗ trợ availability và partition tolerance thay cho consitency. Khi partition xuất hiện giữa 2 node, cả 2 node đều available, tuy nhiên 1 node sẽ chữa dữ liệu cũ hơn so với node kìa. Khi partition được giải quyết, các AP datatabases sẽ đồng bộ dự liệu giữa các node lại.\nCA database: hỗ trợ consitency và availability. Nó không thể làm được điều này nếu partition xảy ra trong hệ thống, vì vậy nó không đảm bảo partition tolerance.\nCA database được liệt kê cuối cùng vì 1 lý do: không thể tránh khỏi tình trạng partition trong một hệ thống phân tán. Vì vậy, chúng ta có thể thảo luận về CA database trên lý thuyết, nhưng trong thực tế, CA distribute database không thể tồn tại. Tuy nhiên, điều đó không có nghĩa là bạn không thể có một CA database cho ứng dụng phân tán của mình nếu cần. Nhiều cơ sở dữ liệu quan hệ (relational databases), như PostgreSQL, hỗ trợ consistency và availability và có thể được deployed trên nhiều node sử dụng replication.\n",
-  "wordCount" : "648",
-  "inLanguage": "en",
-  "datePublished": "2020-05-26T14:51:46+07:00",
-  "dateModified": "2020-05-26T14:51:46+07:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://victornm.github.io/posts/cap-theorem/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "VictorNM",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://victornm.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
 </head>
 
 <body class="" id="top">
@@ -135,7 +73,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://victornm.github.io/" accesskey="h" title="VictorNM (Alt + H)">VictorNM</a>
+            <a href="http://localhost:1313/" accesskey="h" title="VictorNM (Alt + H)">VictorNM</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -161,17 +99,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://victornm.github.io/" title="Home">
+                <a href="http://localhost:1313/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://victornm.github.io/posts" title="Posts">
+                <a href="http://localhost:1313/posts" title="Posts">
                     <span>Posts</span>
                 </a>
             </li>
             <li>
-                <a href="https://victornm.github.io/tags" title="Tags">
+                <a href="http://localhost:1313/tags" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -229,7 +167,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="https://victornm.github.io/">VictorNM</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">VictorNM</a></span> · 
 
     <span>
         Powered by

@@ -2,32 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>VictorNM</title>
-    <link>https://victornm.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on VictorNM</description>
     <generator>Hugo -- 0.140.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2020 14:51:46 +0700</lastBuildDate>
-    <atom:link href="https://victornm.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Sep 2025 20:18:44 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Which is harder: figuring out how to solve a problem, or convincing others about how to solve a problem well?</title>
+      <link>http://localhost:1313/posts/noname/</link>
+      <pubDate>Tue, 09 Sep 2025 20:18:44 +0700</pubDate>
+      <guid>http://localhost:1313/posts/noname/</guid>
+      <description>&lt;p&gt;Which is harder: figuring out how to solve a problem, or convincing others about how to solve a problem well?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Refactor</title>
+      <link>http://localhost:1313/posts/refactor/</link>
+      <pubDate>Sun, 26 Feb 2023 15:28:10 +0700</pubDate>
+      <guid>http://localhost:1313/posts/refactor/</guid>
+      <description>&lt;h1 id=&#34;introduction-to-refactoring&#34;&gt;Introduction to Refactoring&lt;/h1&gt;
+&lt;p&gt;Refactoring is a process of improving existing software code, such as restructuring its internal architecture, improving coding practices, and creating better code readability. It is a very important software development process that helps software developers keep their code well-structured, organized, and maintainable. Since the refactoring process is designed to improve existing software, it does not add any new features to the existing code, but rather it focuses mainly on optimization and speeding up the development process.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>CAP Theorem</title>
-      <link>https://victornm.github.io/posts/cap-theorem/</link>
+      <link>http://localhost:1313/posts/cap-theorem/</link>
       <pubDate>Tue, 26 May 2020 14:51:46 +0700</pubDate>
-      <guid>https://victornm.github.io/posts/cap-theorem/</guid>
+      <guid>http://localhost:1313/posts/cap-theorem/</guid>
       <description>&lt;p&gt;Trong bài viết hôm nay, mình sẽ tìm hiều về định lý CAP thông qua việc dịch bài gốc từ website của IBM Cloud nhé: &lt;a href=&#34;https://www.ibm.com/cloud/learn/cap-theorem&#34;&gt;https://www.ibm.com/cloud/learn/cap-theorem&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Testing and Refactoring</title>
-      <link>https://victornm.github.io/posts/testing-and-refactoring/</link>
+      <link>http://localhost:1313/posts/testing-and-refactoring/</link>
       <pubDate>Thu, 21 May 2020 08:39:31 +0700</pubDate>
-      <guid>https://victornm.github.io/posts/testing-and-refactoring/</guid>
+      <guid>http://localhost:1313/posts/testing-and-refactoring/</guid>
       <description>&lt;p&gt;Sau một thời gian học và làm việc trong ngành lập trình này, mình nhận ra có 2 kỹ năng cực kỳ thiết yếu để trở thành một lập trình viên tốt, đó là Testing và Refactoring. Tuy nhiên, có vẻ như đây lại là 2 kỹ năng rất ít được đề cập tới cả trong trường học lần ở các công ty. Vậy Test là gì, và Refactor là gì, tại sao mình lại cho rằng nó là thiết yếu, hôm nay mình sẽ trình bày một số suy nghĩ về điều này nhé.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Zen of Go</title>
-      <link>https://victornm.github.io/posts/the-zen-of-go/</link>
+      <link>http://localhost:1313/posts/the-zen-of-go/</link>
       <pubDate>Sun, 17 May 2020 22:29:23 +0700</pubDate>
-      <guid>https://victornm.github.io/posts/the-zen-of-go/</guid>
+      <guid>http://localhost:1313/posts/the-zen-of-go/</guid>
       <description>&lt;p&gt;Nhân dịp tao blog mình đăng lại 1 bài lược dịch cách đây không lâu của mình, chi tiết các bạn có thể tìm đọc tại bài gốc &lt;strong&gt;&amp;ldquo;The Zen of Go&amp;rdquo;&lt;/strong&gt; của Dave Cheney: &lt;a href=&#34;https://dave.cheney.net/2020/02/23/the-zen-of-go&#34;&gt;https://dave.cheney.net/2020/02/23/the-zen-of-go&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTTP/1 vs HTTP/2</title>
+      <link>http://localhost:1313/posts/http1-vs-http2/</link>
+      <pubDate>Sun, 17 May 2020 13:47:44 +0700</pubDate>
+      <guid>http://localhost:1313/posts/http1-vs-http2/</guid>
+      <description>&lt;p&gt;Chào các bạn, trong bài viết này mình sẽ cùng tìm hiểu xem HTTP là gì, cùng với đó là so sánh sự khác biệt giữa HTTP/1 và HTTP/2 nhé.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
